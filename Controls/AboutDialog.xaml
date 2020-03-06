@@ -1,0 +1,15 @@
+﻿<ContentDialog
+    x:Class="Notification_Forwarder.Controls.AboutDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Name="ContentDialog_About"
+        x:Uid="ContentDialog_About"
+        Title="About"
+        CloseButtonText="OK"
+        CloseButtonStyle="{StaticResource ButtonRevealStyle}"
+        DefaultButton="Close">
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TextBlock x:Name="TextBlock_AboutHeader" Text="Notification Forwarder 1.0.0" TextWrapping="Wrap"/>
+        <TextBlock x:Uid="TextBlock_AboutText" Text="About information goes here." TextWrapping="Wrap"/>
+    </StackPanel>
+</ContentDialog>

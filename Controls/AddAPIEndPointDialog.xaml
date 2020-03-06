@@ -1,0 +1,15 @@
+﻿<ContentDialog
+    x:Class="Notification_Forwarder.Controls.AddAPIEndPointDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Uid="AddAPIEndPointDialog"
+        Title="Add forward target"
+        PrimaryButtonText="Add"
+        PrimaryButtonStyle="{StaticResource AccentButtonStyle}"
+        CloseButtonText="Cancel"
+        CloseButtonStyle="{StaticResource ButtonRevealStyle}"
+        DefaultButton="Primary" CloseButtonClick="ContentDialog_CloseButtonClick">
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TextBox x:Uid="TextBox_EndPointURL" Header="The API endpoint URL should be:" PlaceholderText="Enter URL..." x:Name="TextBox_EndPointURL" TextChanged="TextBox_EndPointURL_TextChanged"/>
+    </StackPanel>
+</ContentDialog>

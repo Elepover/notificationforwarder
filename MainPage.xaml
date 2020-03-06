@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="Notification_Forwarder.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Notification_Forwarder"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <NavigationView x:Uid="NavigationView"
+                        x:Name="Navigation"
+                        OpenPaneLength="200"
+                        AlwaysShowHeader="False"
+                        PaneDisplayMode="Left"
+                        IsSettingsVisible="True"
+                        SelectionChanged="Navigation_SelectionChanged" BackRequested="Navigation_BackRequested">
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Uid="HomePageItem" Tag="home" x:Name="HomePageItem">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="Home"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItemHeader x:Uid="NavigationViewHeader1"/>
+                <NavigationViewItem x:Uid="NotificationsItem" Tag="notifications" x:Name="NotificationsPageItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE91C;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <NavigationView.PaneFooter>
+                <StackPanel x:Name="FooterStackPanel" Orientation="Vertical" Visibility="Visible">
+                    <NavigationViewItem x:Uid="AboutItem" Tag="about" x:Name="AboutPageItem" Tapped="AboutPageItem_Tapped">
+                        <NavigationViewItem.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE946;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </StackPanel>
+            </NavigationView.PaneFooter>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Frame x:Name="ContentFrame" IsTabStop="True"/>
+            </ScrollViewer>
+        </NavigationView>
+    </Grid>
+</Page>

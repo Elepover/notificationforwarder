@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="Notification_Forwarder.Pages.EndPointsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Notification_Forwarder.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <TextBlock x:Uid="EndPointsPage_ManageTargets" Text="Manage forward targets" FontSize="25" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ToggleButton x:Name="ToggleButton_Multiselect" Margin="0,10,102,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="41" Click="ToggleButton_Multiselect_Click">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE762;"/>
+        </ToggleButton>
+        <Button x:Name="Button_Add" Margin="0,10,56,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="41" Click="Button_Add_Click">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;"/>
+        </Button>
+        <Button x:Name="Button_Delete" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="41" Click="Button_Delete_Click">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;"/>
+        </Button>
+        <ListView x:Name="ListView_EndPoints" Margin="0,49,0,0" />
+    </Grid>
+</Page>
