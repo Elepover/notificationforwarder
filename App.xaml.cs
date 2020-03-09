@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,6 +31,7 @@ namespace Notification_Forwarder
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            Debug.AutoFlush = true;
         }
 
         /// <summary>

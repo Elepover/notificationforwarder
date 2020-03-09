@@ -2,6 +2,7 @@
 using Notification_Forwarder.ConfigHelper;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,10 +19,12 @@ namespace Notification_Forwarder.Protocol
         {
             try
             {
+                Debug.WriteLine("Creating uploader thread...");
                 var worker = new Thread(async () => 
                 {
                     try
                     {
+                        Debug.WriteLine($"Attempting to forward message to endpoint {endPoint}...");
                         var jsonMessage = JsonConvert.SerializeObject(clientData);
                         using (var client = new WebClient())
                         {
@@ -34,14 +37,14 @@ namespace Notification_Forwarder.Protocol
                     }
                     catch (Exception ex)
                     {
-                        Console.Error.WriteLine($"Unable to forward messages: {ex.Message}, target endpoint: {endPoint}");
+                        Debug.WriteLine($"Unable to forward messages: {ex.Message}, target endpoint: {endPoint}");
                     }
                 }) { IsBackground = true };
                 worker.Start();
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine($"Unable to start uploader thread: {ex.Message}, target endpoint: {endPoint}");
+                Debug.WriteLine($"Unable to start uploader thread: {ex.Message}, target endpoint: {endPoint}");
             }
         }
     }

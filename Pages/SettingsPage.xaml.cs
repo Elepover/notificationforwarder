@@ -30,15 +30,17 @@ namespace Notification_Forwarder.Pages
             this.InitializeComponent();
         }
 
+        private bool _isToggleSwitchReady = false;
+
         private void ToggleSwitch_DisplayPackageName_Toggled(object sender, RoutedEventArgs e)
         {
-            if (sender == null) return;
+            if (!_isToggleSwitchReady) return;
             Conf.CurrentConf.DisplayPackageName = ToggleSwitch_DisplayPackageName.IsOn;
         }
 
         private void ToggleSwitch_EnableForwarder_Toggled(object sender, RoutedEventArgs e)
         {
-            if (sender == null) return;
+            if (!_isToggleSwitchReady) return;
             Conf.CurrentConf.EnableForwarding = ToggleSwitch_EnableForwarder.IsOn;
             if (ToggleSwitch_EnableForwarder.IsOn && (MainPage.UploadWorkerThread?.IsAlive != true))
             {
@@ -52,6 +54,7 @@ namespace Notification_Forwarder.Pages
             ToggleSwitch_DisplayPackageName.IsOn = Conf.CurrentConf.DisplayPackageName;
             ToggleSwitch_EnableForwarder.IsOn = Conf.CurrentConf.EnableForwarding;
             ToggleSwitch_MuteNewApps.IsOn = Conf.CurrentConf.MuteNewApps;
+            _isToggleSwitchReady = true;
         }
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
@@ -68,7 +71,7 @@ namespace Notification_Forwarder.Pages
 
         private void ToggleSwitch_MuteNewApps_Toggled(object sender, RoutedEventArgs e)
         {
-            if (sender == null) return;
+            if (!_isToggleSwitchReady) return;
             Conf.CurrentConf.MuteNewApps = ToggleSwitch_MuteNewApps.IsOn;
         }
     }
