@@ -20,20 +20,13 @@ namespace Notification_Forwarder
                 Notifications.AddRange(newlyAdded);
                 foreach (var item in newlyAdded)
                 {
+                    Conf.CurrentConf.AddApp(new AppInfo(item.AppInfo) { ForwardingEnabled = !Conf.CurrentConf.MuteNewApps });
                     var appIndex = Conf.CurrentConf.FindAppIndex(new AppInfo(item.AppInfo));
                     if (appIndex == -1 && !Conf.CurrentConf.MuteNewApps) continue;
                     if (!Conf.CurrentConf.AppsToForward[appIndex].ForwardingEnabled) continue;
                     UnsentNotificationPool.Add(new Protocol.Notification(item));
                 }
                 Conf.CurrentConf.NotificationsReceived += newlyAdded.Count;
-                foreach (var notif in newlyAdded)
-                {
-                    var info = new AppInfo(notif.AppInfo)
-                    {
-                        ForwardingEnabled = !Conf.CurrentConf.MuteNewApps
-                    };
-                    Conf.CurrentConf.AddApp(info);
-                }
             }
             catch (Exception ex)
             {

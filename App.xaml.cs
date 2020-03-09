@@ -98,7 +98,11 @@ namespace Notification_Forwarder
             // request forwarder to stop
             MainPage.RequestWorkerExit = true;
             // save conf
-            ConfigHelper.Conf.Save(ConfigHelper.Conf.CurrentConf);
+            try
+            {
+                ConfigHelper.Conf.Save(ConfigHelper.Conf.CurrentConf);
+            }
+            catch { }
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();

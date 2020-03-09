@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap mp uap3">
 
   <Identity
-    Name="07dd8f30-f2aa-4f08-88ab-de9a764f109f"
-    Publisher="CN=elepo"
-    Version="1.0.0.0" />
+    Name="32615Elepover.NotificationForwarder"
+    Publisher="CN=BE1ADC9A-643C-40F7-B474-D006EA7EFC44"
+    Version="1.0.8.0" />
 
-  <mp:PhoneIdentity PhoneProductId="07dd8f30-f2aa-4f08-88ab-de9a764f109f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="0318cd22-d177-4614-b6de-243a5d11f676" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Notification Forwarder</DisplayName>
-    <PublisherDisplayName>elepo</PublisherDisplayName>
+    <PublisherDisplayName>Elepover</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

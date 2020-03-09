@@ -68,7 +68,7 @@ namespace Notification_Forwarder.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var worker = new Thread(() => UpdateThread())
+            var worker = new Thread(UpdateThread)
             {
                 IsBackground = true
             };

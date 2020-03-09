@@ -12,8 +12,7 @@ namespace Notification_Forwarder.ConfigHelper
     {
         public static bool IsUrl(string url)
         {
-            Uri parseTest;
-            return Uri.TryCreate(url, UriKind.Absolute, out parseTest) && (parseTest.Scheme == Uri.UriSchemeHttp || parseTest.Scheme == Uri.UriSchemeHttps);
+            return Uri.TryCreate(url, UriKind.Absolute, out var parseTest) && (parseTest.Scheme == Uri.UriSchemeHttp || parseTest.Scheme == Uri.UriSchemeHttps);
         }
     }
 }

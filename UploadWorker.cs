@@ -9,7 +9,7 @@ namespace Notification_Forwarder
 {
     public sealed partial class MainPage : Page
     {
-        private static async Task UploadWorker()
+        private static void UploadWorker()
         {
             while (!Conf.CurrentConf.EnableForwarding && !RequestWorkerExit)
             {
@@ -22,11 +22,7 @@ namespace Notification_Forwarder
                 }
                 foreach (var endPoint in Conf.CurrentConf.APIEndPoints)
                 {
-                    if (await ClientData.SendAsync(endPoint, pending))
-                    {
-                        Conf.CurrentConf.LastSuccessfulForward = DateTime.Now;
-                        Conf.CurrentConf.NotificationsForwarded++;
-                    }
+                    ClientData.Send(endPoint, pending);
                 }
                 Skip:
                 Thread.Sleep(1000);
@@ -39,7 +35,7 @@ namespace Notification_Forwarder
             if (!Conf.CurrentConf.EnableForwarding) return;
             if (UploadWorkerThread?.IsAlive == true) return;
             RequestWorkerExit = false;
-            UploadWorkerThread = new Thread(async () => await UploadWorker()) { IsBackground = true };
+            UploadWorkerThread = new Thread(UploadWorker) { IsBackground = true };
             UploadWorkerThread.Start();
         }
     }

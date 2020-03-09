@@ -79,14 +79,14 @@ namespace Notification_Forwarder
             }
         }
 
-        private async Task NoPermissionDialog()
+        private async Task NoPermissionDialog(string errorContent = "")
         {
             IsListenerActive = false;
             IsPermissionGranted = false;
             var dialog = new ContentDialog()
             {
                 Title = GetString("Prompt_NoPermission_Title"),
-                Content = GetString("Prompt_NoPermission_Text"),
+                Content = GetString("Prompt_NoPermission_Text") + (string.IsNullOrEmpty(errorContent) ? string.Empty : $"\n\nError: {errorContent}"),
                 DefaultButton = ContentDialogButton.Close,
                 CloseButtonStyle = Resources["ButtonRevealStyle"] as Style,
                 CloseButtonText = GetString("Prompt_NoPermission_OK")
@@ -99,19 +99,31 @@ namespace Notification_Forwarder
             // get a page
             Navigation.SelectedItem = HomePageItem;
             // check permissions
-            var accessStatus = await Listener.RequestAccessAsync();
-            switch (accessStatus)
+            try
             {
-                case UserNotificationListenerAccessStatus.Allowed:
-                    IsListenerActive = true;
-                    IsPermissionGranted = true;
-                    Notifications.AddRange(await Listener.GetNotificationsAsync(NotificationKinds.Toast));
-                    Listener.NotificationChanged += NotificationHandler;
-                    StartUploadWorker();
-                    break;
-                default:
-                    await NoPermissionDialog();
-                    break;
+                var accessStatus = await Listener.RequestAccessAsync();
+                switch (accessStatus)
+                {
+                    case UserNotificationListenerAccessStatus.Allowed:
+                        IsListenerActive = true;
+                        IsPermissionGranted = true;
+                        var initialList = await Listener.GetNotificationsAsync(NotificationKinds.Toast);
+                        foreach (var notif in initialList)
+                        {
+                            Conf.CurrentConf.AddApp(new AppInfo(notif.AppInfo) {ForwardingEnabled = !Conf.CurrentConf.MuteNewApps});
+                        }
+                        Notifications.AddRange(initialList);
+                        Listener.NotificationChanged += NotificationHandler;
+                        StartUploadWorker();
+                        break;
+                    default:
+                        await NoPermissionDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                await NoPermissionDialog(ex.Message);
             }
             // wait 1 sec
             var paneCloser = new Thread(async () =>

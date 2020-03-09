@@ -43,7 +43,7 @@ namespace Notification_Forwarder.Pages
                     LoadNotifications(MainPage.Notifications);
                     TextBlock_Loading.Visibility = Visibility.Collapsed;
                 });
-                var worker = new Thread(() => UpdateThread()) { IsBackground = true };
+                var worker = new Thread(UpdateThread) { IsBackground = true };
                 worker.Start();
             });
             initialWorker.Start();
