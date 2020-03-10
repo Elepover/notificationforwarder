@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Windows.Foundation;
 using Windows.UI.Notifications;
 using Windows.UI.Notifications.Management;
 using Windows.UI.Xaml;
@@ -96,8 +97,9 @@ namespace Notification_Forwarder
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // get a page
-            Navigation.SelectedItem = HomePageItem;
+            // go to loading page
+            Navigation.IsEnabled = false;
+            _ = ContentFrame.Navigate(typeof(Pages.LoadingPage), null);
             // check permissions
             try
             {
@@ -125,6 +127,8 @@ namespace Notification_Forwarder
             {
                 await NoPermissionDialog(ex.Message);
             }
+            Navigation.SelectedItem = HomePageItem;
+            Navigation.IsEnabled = true;
             // wait 1 sec
             var paneCloser = new Thread(async () =>
             {

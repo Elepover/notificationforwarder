@@ -12,7 +12,7 @@
 
     <Grid>
         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="30" Glyph="&#xECAA;" HorizontalAlignment="Left" Margin="5,10,0,0" Width="44" Height="44" VerticalAlignment="Top"/>
-        <TextBlock x:Name="TextBlock_AppName" MaxLines="1" FontSize="15" Margin="60,10,10,0" Text="App (Contoso.InitialApp)" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlock_AppName" MaxLines="1" TextTrimming="CharacterEllipsis" FontSize="15" Margin="60,10,10,0" Text="App (Contoso.InitialApp)" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Uid="AppItem_Header" MaxLines="1" Margin="60,36,10,0" Text="Notification forwarding for this app" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <ToggleSwitch x:Name="ToggleSwitch_Forwarding" x:Uid="ToggleSwitch" Margin="60,0,0,10" VerticalAlignment="Bottom" Height="33" Toggled="ToggleSwitch_Forwarding_Toggled" Width="100"/>
     </Grid>

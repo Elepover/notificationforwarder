@@ -212,6 +212,9 @@
 版权所有 © 2020 Elepover. 此程序在 Apache License 版本 2.0 协议下开源。
 源代码可于 https://github.com/Elepover/notificationforwarder/ 获取。</value>
   </data>
+  <data name="TextBlock_Loading.Text" xml:space="preserve">
+    <value>载入中...</value>
+  </data>
   <data name="TextBox_EndPointURL.Header" xml:space="preserve">
     <value>API 终结点 URL 应为：</value>
   </data>

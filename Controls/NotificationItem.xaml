@@ -12,8 +12,8 @@
     <Grid>
         <Image x:Name="Image_Icon" HorizontalAlignment="Left" Margin="10,10,0,0" Width="44" Height="44" VerticalAlignment="Top"/>
         <FontIcon x:Name="FIcon" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="30" Glyph="&#xE91C;" HorizontalAlignment="Left" Margin="5,10,0,0" Width="44" Height="44" VerticalAlignment="Top"/>
-        <TextBlock x:Name="TextBlock_AppName" MaxLines="1" FontSize="15" Margin="60,10,10,0" Text="App (Contoso.InitialApp)" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock x:Name="TextBlock_NotificationContent" MaxLines="3" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" Margin="60,36,10,29" Text="Hey!" TextWrapping="Wrap"/>
+        <TextBlock x:Name="TextBlock_AppName" TextTrimming="CharacterEllipsis" MaxLines="1" FontSize="15" Margin="60,10,10,0" Text="App (Contoso.InitialApp)" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlock_NotificationContent" TextTrimming="CharacterEllipsis" MaxLines="4" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" Margin="60,36,10,29" Text="Hey!" TextWrapping="Wrap"/>
         <TextBlock x:Name="TextBlock_Time" MaxLines="1" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" Margin="60,0,10,10" FontSize="12" Text="12:34" TextWrapping="Wrap" Height="13" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

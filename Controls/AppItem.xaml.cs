@@ -25,12 +25,12 @@ namespace Notification_Forwarder.Controls
             get => _currentApp;
             set
             {
-                if (Conf.CurrentConf.DisplayPackageName) TextBlock_AppName.Text = $"{value.DisplayName} ({value.AppUserModelId})";
-                else TextBlock_AppName.Text = value.DisplayName;
+                TextBlock_AppName.Text = Conf.CurrentConf.DisplayPackageName ? $"{value.DisplayName} ({value.AppUserModelId})" : value.DisplayName;
                 _currentApp = value;
             }
         }
         private AppInfo _currentApp;
+        private readonly bool _toggleSwitchReady = false;
 
         public delegate void AppItemToggleStatusChangedEventHandler(object sender, AppItemToggleStatusChangedEventArgs e);
         public event AppItemToggleStatusChangedEventHandler AppItemToggleStatusChanged;
@@ -44,13 +44,14 @@ namespace Notification_Forwarder.Controls
         {
             this.InitializeComponent();
             CurrentApp = app;
-            TextBlock_AppName.Text = $"{app.DisplayName} ({app.AppUserModelId})";
             ToggleSwitch_Forwarding.IsOn = isOn;
+            _toggleSwitchReady = true;
         }
 
         private void ToggleSwitch_Forwarding_Toggled(object sender, RoutedEventArgs e)
         {
             if (sender == null) return;
+            if (!_toggleSwitchReady) return;
             AppItemToggleStatusChanged?.Invoke(this, new AppItemToggleStatusChangedEventArgs(ToggleSwitch_Forwarding.IsOn, CurrentApp));
         }
     }

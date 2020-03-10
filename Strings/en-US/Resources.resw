@@ -212,6 +212,9 @@
 Copyright © 2020 Elepover. This program is open-source under Apache License Version 2.0.
 Source code can be found on https://github.com/Elepover/notificationforwarder/</value>
   </data>
+  <data name="TextBlock_Loading.Text" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
   <data name="TextBox_EndPointURL.Header" xml:space="preserve">
     <value>The API endpoint URL should be:</value>
   </data>

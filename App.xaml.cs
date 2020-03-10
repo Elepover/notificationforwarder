@@ -102,6 +102,7 @@ namespace Notification_Forwarder
             // save conf
             try
             {
+                Debug.WriteLine("attempting to save data...");
                 ConfigHelper.Conf.Save(ConfigHelper.Conf.CurrentConf);
             }
             catch { }
