@@ -171,6 +171,9 @@
   <data name="HyperlinkButton_SeeApps.Content" xml:space="preserve">
     <value>管理要转发哪些应用的通知</value>
   </data>
+  <data name="LogsItem.Content" xml:space="preserve">
+    <value>日志</value>
+  </data>
   <data name="NavigationViewHeader1.Content" xml:space="preserve">
     <value>管理</value>
   </data>
@@ -216,7 +219,8 @@
     <value>载入中...</value>
   </data>
   <data name="TextBox_EndPointURL.Header" xml:space="preserve">
-    <value>API 终结点 URL 应为：</value>
+    <value>API 终结点 URL 应为：
+(由于 UWP 限制，请回避如 localhost, 127.0.0.1 或 [::1] 之类的本地地址)</value>
   </data>
   <data name="TextBox_EndPointURL.PlaceholderText" xml:space="preserve">
     <value>输入 URL...</value>

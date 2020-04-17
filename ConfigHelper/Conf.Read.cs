@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
 
 namespace Notification_Forwarder.ConfigHelper
@@ -25,6 +20,7 @@ namespace Notification_Forwarder.ConfigHelper
                 Save(parsed);
             }
             if (apply) CurrentConf = parsed;
+            Log($"configurations loaded, {CurrentConf.AppsToForward.Count} app(s) on record, {CurrentConf.APIEndPoints.Count} target(s) set.");
             return parsed;
         }
     }

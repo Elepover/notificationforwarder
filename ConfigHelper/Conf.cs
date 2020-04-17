@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Notification_Forwarder.ConfigHelper
 {
@@ -10,6 +7,7 @@ namespace Notification_Forwarder.ConfigHelper
     {
         public static Conf CurrentConf;
         public static MainPage MainPageInstance;
+        public static List<LogEntry> Logs = new List<LogEntry>();
         public bool EnableForwarding;
         public bool DisplayPackageName;
         public bool MuteNewApps;

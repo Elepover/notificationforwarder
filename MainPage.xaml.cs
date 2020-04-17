@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Foundation;
 using Windows.UI.Notifications;
 using Windows.UI.Notifications.Management;
 using Windows.UI.Xaml;
@@ -57,8 +56,12 @@ namespace Notification_Forwarder
         private void Navigation_Navigate(string navItemTag, NavigationTransitionInfo transitionInfo)
         {
             Type _page;
+            Conf.Log($"navigating to page: {navItemTag}...");
             switch (navItemTag)
             {
+                case "logs":
+                    _page = typeof(Pages.LogsPage);
+                    break;
                 case "settings":
                     _page = typeof(Pages.SettingsPage);
                     break;
@@ -103,28 +106,34 @@ namespace Notification_Forwarder
             // check permissions
             try
             {
+                Conf.Log("detecting permissions...");
                 var accessStatus = await Listener.RequestAccessAsync();
                 switch (accessStatus)
                 {
                     case UserNotificationListenerAccessStatus.Allowed:
+                        Conf.Log("permission granted, loading initial notifications...");
                         IsListenerActive = true;
                         IsPermissionGranted = true;
                         var initialList = await Listener.GetNotificationsAsync(NotificationKinds.Toast);
+                        Conf.Log($"loading {initialList.Count} notifications...");
                         foreach (var notif in initialList)
                         {
                             Conf.CurrentConf.AddApp(new AppInfo(notif.AppInfo) {ForwardingEnabled = !Conf.CurrentConf.MuteNewApps});
                         }
                         Notifications.AddRange(initialList);
                         Listener.NotificationChanged += NotificationHandler;
+                        Conf.Log("notification listener activated.");
                         StartUploadWorker();
                         break;
                     default:
+                        Conf.Log("permission not granted, no exceptions thrown.", LogLevel.Warning);
                         await NoPermissionDialog();
                         break;
                 }
             }
             catch (Exception ex)
             {
+                Conf.Log($"notification listener failed: {ex.Message}, HRESULT {ex.HResult:x}", LogLevel.Error);
                 await NoPermissionDialog(ex.Message);
             }
             Navigation.SelectedItem = HomePageItem;

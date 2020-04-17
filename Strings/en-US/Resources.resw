@@ -171,6 +171,9 @@
   <data name="HyperlinkButton_SeeApps.Content" xml:space="preserve">
     <value>Manage which apps to forward</value>
   </data>
+  <data name="LogsItem.Content" xml:space="preserve">
+    <value>Logs</value>
+  </data>
   <data name="NavigationViewHeader1.Content" xml:space="preserve">
     <value>Management</value>
   </data>
@@ -216,7 +219,8 @@ Source code can be found on https://github.com/Elepover/notificationforwarder/</
     <value>Loading...</value>
   </data>
   <data name="TextBox_EndPointURL.Header" xml:space="preserve">
-    <value>The API endpoint URL should be:</value>
+    <value>The API endpoint URL should be:
+(Due to UWP restrictions, avoid local loopback addresses like localhost, 127.0.0.1 or [::1])</value>
   </data>
   <data name="TextBox_EndPointURL.PlaceholderText" xml:space="preserve">
     <value>Enter URL...</value>

@@ -1,5 +1,6 @@
 ﻿using Notification_Forwarder.ConfigHelper;
 using Notification_Forwarder.Protocol;
+using System;
 using System.Diagnostics;
 using System.Threading;
 using Windows.UI.Xaml.Controls;
@@ -11,25 +12,33 @@ namespace Notification_Forwarder
         private static void UploadWorker()
         {
             Debug.WriteLine("Upload master worker is online.");
+            Conf.Log("upload worker activated.");
             while (Conf.CurrentConf.EnableForwarding && !RequestWorkerExit)
             {
                 if (UnsentNotificationPool.Count == 0) goto Skip;
                 Debug.WriteLine("Starting data upload...");
+                var sessionId = Conf.GetRandomString(10);
                 var pending = new ClientData();
+                int processedEndPoints = 0;
                 lock (UnsentNotificationPool)
                 {
+                    Conf.Log($"[{sessionId}] starting forwarding {UnsentNotificationPool.Count} notification(s)...");
                     pending.Notifications.AddRange(UnsentNotificationPool);
                     UnsentNotificationPool.Clear();
                 }
                 foreach (var endPoint in Conf.CurrentConf.APIEndPoints)
                 {
                     Debug.WriteLine($"Sending data to {endPoint}");
-                    ClientData.Send(endPoint, pending);
+                    Conf.Log($"[{sessionId}] preparing to send data to {endPoint}...");
+                    ClientData.Send(endPoint, pending, sessionId);
+                    processedEndPoints++;
                 }
+                Conf.Log($"[{sessionId}] all uploads started, {processedEndPoints} endpoint(s) to go.");
                 Skip:
                 Thread.Sleep(1000);
             }
             Debug.WriteLine("Upload master worker is offline.");
+            Conf.Log("upload worker exited.");
             RequestWorkerExit = false;
         }
 
@@ -38,6 +47,7 @@ namespace Notification_Forwarder
             if (!Conf.CurrentConf.EnableForwarding) return;
             if (UploadWorkerThread?.IsAlive == true) return;
             Debug.WriteLine("Starting upload master worker...");
+            Conf.Log("upload worker is starting...");
             RequestWorkerExit = false;
             UploadWorkerThread = new Thread(UploadWorker) { IsBackground = true };
             UploadWorkerThread.Start();

@@ -1,19 +1,9 @@
 ﻿using Notification_Forwarder.ConfigHelper;
 using Notification_Forwarder.Controls;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -51,6 +41,7 @@ namespace Notification_Forwarder.Pages
             {
                 Conf.CurrentConf.APIEndPoints.Remove(item);
                 ListView_EndPoints.Items.Remove(item);
+                Conf.Log($"deleted endpoint {item}.");
             }
         }
 
@@ -59,6 +50,7 @@ namespace Notification_Forwarder.Pages
             var url = await AddAPIEndPointDialog.GetUrl();
             if (string.IsNullOrEmpty(url)) return;
             if (!Conf.IsUrl(url)) return;
+            Conf.Log($"a new endpoint {url} has been added.");
             ListView_EndPoints.Items.Add(url);
             Conf.CurrentConf.APIEndPoints.Add(url);
         }

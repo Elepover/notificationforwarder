@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Notification_Forwarder.ConfigHelper;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Notification_Forwarder
@@ -44,7 +34,9 @@ namespace Notification_Forwarder
             var rootFrame = Window.Current.Content as Frame;
 
             // read settings
-            _ = ConfigHelper.Conf.Read();
+            Conf.Log("reading settings...");
+            _ = Conf.Read();
+            Conf.Log("settings read successfully.");
 
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
@@ -85,7 +77,7 @@ namespace Notification_Forwarder
         ///<param name="e">有关导航失败的详细信息</param>
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+            Conf.Log($"unable to load page: {e.SourcePageType.FullName}.");
         }
 
         /// <summary>
@@ -103,7 +95,8 @@ namespace Notification_Forwarder
             try
             {
                 Debug.WriteLine("attempting to save data...");
-                ConfigHelper.Conf.Save(ConfigHelper.Conf.CurrentConf);
+                Conf.Log("saving data on suspension...");
+                Conf.Save(Conf.CurrentConf);
             }
             catch { }
             var deferral = e.SuspendingOperation.GetDeferral();

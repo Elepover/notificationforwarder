@@ -140,13 +140,19 @@
     <Compile Include="ConfigHelper\AppInfo.cs" />
     <Compile Include="ConfigHelper\Conf.AddApp.cs" />
     <Compile Include="ConfigHelper\Conf.cs" />
+    <Compile Include="ConfigHelper\Conf.GetInt.cs" />
+    <Compile Include="ConfigHelper\Conf.GetRandomString.cs" />
     <Compile Include="ConfigHelper\Conf.IsUrl.cs" />
     <Compile Include="ConfigHelper\Conf.DelayAsync.cs" />
     <Compile Include="ConfigHelper\Conf.FindAppIndex.cs" />
     <Compile Include="ConfigHelper\Conf.GetActiveAppsCount.cs" />
     <Compile Include="ConfigHelper\Conf.GetVersion.cs" />
+    <Compile Include="ConfigHelper\Conf.Log.cs" />
     <Compile Include="ConfigHelper\Conf.Read.cs" />
     <Compile Include="ConfigHelper\Conf.Save.cs" />
+    <Compile Include="ConfigHelper\LogEntry.cs" />
+    <Compile Include="ConfigHelper\LogEntry.ToString.cs" />
+    <Compile Include="ConfigHelper\LogLevel.cs" />
     <Compile Include="ConfigHelper\NotificationComparer.cs" />
     <Compile Include="Controls\AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
@@ -175,6 +181,9 @@
     </Compile>
     <Compile Include="Pages\LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LogsPage.xaml.cs">
+      <DependentUpon>LogsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\NotificationsPage.xaml.cs">
       <DependentUpon>NotificationsPage.xaml</DependentUpon>
@@ -242,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\LoadingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LogsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
