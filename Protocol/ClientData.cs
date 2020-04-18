@@ -6,6 +6,7 @@ namespace Notification_Forwarder.Protocol
 {
     public partial class ClientData
     {
+        private const int _maxRetries = 5;
         public string ClientVersion;
         public List<Notification> Notifications;
         public ClientData()

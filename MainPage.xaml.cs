@@ -56,7 +56,6 @@ namespace Notification_Forwarder
         private void Navigation_Navigate(string navItemTag, NavigationTransitionInfo transitionInfo)
         {
             Type _page;
-            Conf.Log($"navigating to page: {navItemTag}...");
             switch (navItemTag)
             {
                 case "logs":
@@ -133,7 +132,7 @@ namespace Notification_Forwarder
             }
             catch (Exception ex)
             {
-                Conf.Log($"notification listener failed: {ex.Message}, HRESULT {ex.HResult:x}", LogLevel.Error);
+                Conf.Log($"notification listener failed: {ex.Message}, HRESULT 0x{ex.HResult:x}", LogLevel.Error);
                 await NoPermissionDialog(ex.Message);
             }
             Navigation.SelectedItem = HomePageItem;

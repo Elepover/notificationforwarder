@@ -8,8 +8,8 @@
     mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="Grid_Default" BorderThickness="5" BorderBrush="Transparent">
         <TextBlock x:Name="TextBlock_Loading" x:Uid="NotificationsPage_Loading" Visibility="Collapsed" Text="Loading..." HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox BorderThickness="0" FontSize="15" x:Name="TextBox_Logs" FontFamily="Courier New" Visibility="Collapsed" AcceptsReturn="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+        <RichTextBlock FontSize="15" TextWrapping="Wrap" x:Name="TextBox_Logs" FontFamily="Courier New" Visibility="Collapsed"/>
     </Grid>
 </Page>

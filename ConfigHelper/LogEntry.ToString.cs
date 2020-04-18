@@ -15,7 +15,7 @@ namespace Notification_Forwarder.ConfigHelper
                 case LogLevel.Warning:
                     level = "[WARN] "; break;
                 case LogLevel.Error:
-                    level = "[ERROR] "; break;
+                    level = "[FAIL] "; break;
                 default:
                     level = "[UKNN] "; break;
             }

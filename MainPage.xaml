@@ -43,7 +43,7 @@
                     </NavigationViewItem>
                 </StackPanel>
             </NavigationView.PaneFooter>
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ScrollViewer x:FieldModifier="public" x:Name="GlobalScrollViewer" VerticalScrollBarVisibility="Auto">
                 <Frame x:Name="ContentFrame" IsTabStop="True"/>
             </ScrollViewer>
         </NavigationView>

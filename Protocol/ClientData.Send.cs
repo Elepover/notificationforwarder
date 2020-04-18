@@ -17,7 +17,9 @@ namespace Notification_Forwarder.Protocol
                 Debug.WriteLine("Creating uploader thread...");
                 var worker = new Thread(async () => 
                 {
-                    Conf.Log($"[{session}] attempting to forward message to endpoint {endPoint}...");
+                    int retryCounter = 1;
+                    retry:
+                    Conf.Log($"[{session}@{retryCounter}/{_maxRetries}] attempting to forward message to endpoint {endPoint}...");
                     try
                     {
                         Debug.WriteLine($"Attempting to forward message to endpoint {endPoint}...");
@@ -28,14 +30,23 @@ namespace Notification_Forwarder.Protocol
                             client.Headers.Set(HttpRequestHeader.ContentType, "application/json");
                             _ = await client.UploadDataTaskAsync(endPoint, "POST", Encoding.UTF8.GetBytes(jsonMessage)).ConfigureAwait(false);
                         }
-                        Conf.Log($"[{session}] successfully forwarded message to {endPoint}.");
+                        Conf.Log($"[{session}@{retryCounter}/{_maxRetries}] successfully forwarded message to {endPoint}.");
                         Conf.CurrentConf.LastSuccessfulForward = DateTime.Now;
                         Conf.CurrentConf.NotificationsForwarded++;
                     }
                     catch (Exception ex)
                     {
                         Debug.WriteLine($"Unable to forward messages: {ex.Message}, target endpoint: {endPoint}");
-                        Conf.Log($"[{session}] unable to forward message to endpoint {endPoint}: {ex}", LogLevel.Warning);
+                        Conf.Log($"[{session}@{retryCounter}/{_maxRetries}] unable to forward message to endpoint {endPoint}: {ex.Message}, HRESULT 0x{ex.HResult:x}", LogLevel.Warning);
+                        if (retryCounter < _maxRetries)
+                        {
+                            retryCounter++;
+                            goto retry;
+                        }
+                        else
+                        {
+                            Conf.Log($"[{session}@{retryCounter}/{_maxRetries}] couldn't send data: all {retryCounter} retries to {endPoint} failed.", LogLevel.Error);
+                        }
                     }
                 }) { IsBackground = true };
                 worker.Start();
@@ -43,7 +54,7 @@ namespace Notification_Forwarder.Protocol
             catch (Exception ex)
             {
                 Debug.WriteLine($"Unable to start uploader thread: {ex.Message}, target endpoint: {endPoint}");
-                Conf.Log($"[{session}] uploader thread failed: {ex}", LogLevel.Warning);
+                Conf.Log($"[{session}] uploader thread failed: {ex.Message}, HRESULT 0x{ex.HResult:x}", LogLevel.Warning);
             }
         }
     }

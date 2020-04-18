@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
@@ -24,6 +25,7 @@ namespace Notification_Forwarder.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            Conf.MainPageInstance.GlobalScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             TextBlock_Loading.Visibility = Visibility.Visible;
             var initialWorker = new Thread(async () =>
             {
@@ -32,7 +34,7 @@ namespace Notification_Forwarder.Pages
                     LoadLogs();
                     TextBlock_Loading.Visibility = Visibility.Collapsed;
                     TextBox_Logs.Visibility = Visibility.Visible;
-                    TextBox_Logs.Select(TextBox_Logs.Text.Length - 1, 0);
+
                 });
                 var worker = new Thread(UpdateThread) { IsBackground = true };
                 worker.Start();
@@ -62,6 +64,7 @@ namespace Notification_Forwarder.Pages
 
         private void LoadLogs()
         {
+            var paragraph = new Paragraph();
             lock (Conf.Logs)
             {
                 var len = Conf.Logs.Count;
@@ -69,15 +72,22 @@ namespace Notification_Forwarder.Pages
                 for (int i = _currentLogIndex; i < len; i++)
                 {
                     var entry = Conf.Logs[i];
-                    TextBox_Logs.Text += entry.ToString();
+                    var run = new Run
+                    {
+                        Foreground = entry.Color,
+                        Text = (i == len - 1) ? entry.ToString() : entry.ToString() + '\n'
+                    };
+                    paragraph.Inlines.Add(run);
                 }
+                TextBox_Logs.Blocks.Add(paragraph);
+                Conf.MainPageInstance.GlobalScrollViewer.ChangeView(0.0, Grid_Default.ActualHeight, 1.0f);
                 _currentLogIndex = len;
             }
-            TextBox_Logs.Select(TextBox_Logs.Text.Length - 1, 0);
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
+            Conf.MainPageInstance.GlobalScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
             _requestThreadExit = true;
         }
     }
