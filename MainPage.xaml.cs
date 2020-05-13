@@ -27,7 +27,7 @@ namespace Notification_Forwarder
         public static List<UserNotification> NewNotificationPool = new List<UserNotification>();
         public static List<Protocol.Notification> UnsentNotificationPool = new List<Protocol.Notification>();
         public static Thread UploadWorkerThread;
-        public static bool RequestWorkerExit { get; set; } = false;
+        public static bool IsUploadWorkerActive => UploadWorkerThread?.IsAlive == true;
 
         private string GetString(string key)
         {

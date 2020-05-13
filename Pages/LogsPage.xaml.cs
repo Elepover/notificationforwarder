@@ -33,7 +33,7 @@ namespace Notification_Forwarder.Pages
                 {
                     LoadLogs();
                     TextBlock_Loading.Visibility = Visibility.Collapsed;
-                    TextBox_Logs.Visibility = Visibility.Visible;
+                    RichTextBlock_Logs.Visibility = Visibility.Visible;
 
                 });
                 var worker = new Thread(UpdateThread) { IsBackground = true };
@@ -79,7 +79,7 @@ namespace Notification_Forwarder.Pages
                     };
                     paragraph.Inlines.Add(run);
                 }
-                TextBox_Logs.Blocks.Add(paragraph);
+                RichTextBlock_Logs.Blocks.Add(paragraph);
                 Conf.MainPageInstance.GlobalScrollViewer.ChangeView(0.0, Grid_Default.ActualHeight, 1.0f);
                 _currentLogIndex = len;
             }

@@ -10,6 +10,6 @@
 
     <Grid x:Name="Grid_Default" BorderThickness="5" BorderBrush="Transparent">
         <TextBlock x:Name="TextBlock_Loading" x:Uid="NotificationsPage_Loading" Visibility="Collapsed" Text="Loading..." HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <RichTextBlock FontSize="15" TextWrapping="Wrap" x:Name="TextBox_Logs" FontFamily="Courier New" Visibility="Collapsed"/>
+        <RichTextBlock x:Name="RichTextBlock_Logs" FontSize="15" TextWrapping="Wrap" FontFamily="Courier New" Visibility="Collapsed"/>
     </Grid>
 </Page>
