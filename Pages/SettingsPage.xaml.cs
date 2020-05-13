@@ -29,11 +29,8 @@ namespace Notification_Forwarder.Pages
         {
             if (!_isToggleSwitchReady) return;
             Conf.CurrentConf.EnableForwarding = ToggleSwitch_EnableForwarder.IsOn;
-            if (ToggleSwitch_EnableForwarder.IsOn && (MainPage.UploadWorkerThread?.IsAlive != true))
-            {
+            if (ToggleSwitch_EnableForwarder.IsOn && !MainPage.IsUploadWorkerActive)
                 MainPage.StartUploadWorker();
-            }
-            else MainPage.RequestWorkerExit = true;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

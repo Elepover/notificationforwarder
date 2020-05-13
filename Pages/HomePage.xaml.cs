@@ -39,8 +39,8 @@ namespace Notification_Forwarder.Pages
                         if (!MainPage.IsPermissionGranted) ToggleSwitch_Listener.IsEnabled = false;
                         if (MainPage.IsListenerActive) ToggleSwitch_Listener.IsOn = true;
                         else ToggleSwitch_Listener.IsOn = false;
-                        TextBlock_AppsToForward.Text = $"{Conf.CurrentConf.GetActiveAppsCount()}/{Conf.CurrentConf.AppsToForward.Count.ToString()}";
-                        TextBlock_ForwarderService.Text = Conf.CurrentConf.EnableForwarding ? GetString("On") : GetString("Off");
+                        TextBlock_AppsToForward.Text = $"{Conf.CurrentConf.GetActiveAppsCount()}/{Conf.CurrentConf.AppsToForward.Count}";
+                        TextBlock_ForwarderService.Text = (MainPage.UploadWorkerThread?.IsAlive ?? false) ? GetString("On") : GetString("Off");
                         TextBlock_LastSuccessfulForward.Text = Conf.CurrentConf.LastSuccessfulForward == DateTime.MinValue ? "N/A" : Conf.CurrentConf.LastSuccessfulForward.ToString("yyyy/MM/dd\nHH:mm:ss");
                         TextBlock_NotificationsForwarded.Text = Conf.CurrentConf.NotificationsForwarded.ToString();
                         TextBlock_NotificationsReceived.Text = Conf.CurrentConf.NotificationsReceived.ToString();

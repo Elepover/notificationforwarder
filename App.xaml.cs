@@ -21,7 +21,17 @@ namespace Notification_Forwarder
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.Resuming += OnResuming;
             Debug.AutoFlush = true;
+        }
+
+        private void OnResuming(object sender, object e)
+        {
+            if (!MainPage.IsUploadWorkerActive)
+            {
+                Conf.Log("app resumed, restoring upload worker...");
+                MainPage.StartUploadWorker();
+            }
         }
 
         /// <summary>
@@ -33,6 +43,7 @@ namespace Notification_Forwarder
         {
             var rootFrame = Window.Current.Content as Frame;
 
+            Conf.Log("logs may not appear as soon as they're logged, refer to the timestamp as standard.", LogLevel.Warning);
             // read settings
             Conf.Log("reading settings...");
             _ = Conf.Read();
@@ -75,7 +86,7 @@ namespace Notification_Forwarder
         /// </summary>
         ///<param name="sender">导航失败的框架</param>
         ///<param name="e">有关导航失败的详细信息</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             Conf.Log($"unable to load page: {e.SourcePageType.FullName}.");
         }
@@ -89,8 +100,7 @@ namespace Notification_Forwarder
         /// <param name="e">有关挂起请求的详细信息。</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            // request forwarder to stop
-            MainPage.RequestWorkerExit = true;
+            var deferral = e.SuspendingOperation.GetDeferral();
             // save conf
             try
             {
@@ -99,8 +109,6 @@ namespace Notification_Forwarder
                 Conf.Save(Conf.CurrentConf);
             }
             catch { }
-            var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
         }
     }

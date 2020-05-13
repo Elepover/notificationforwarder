@@ -1,6 +1,5 @@
 ﻿using Notification_Forwarder.ConfigHelper;
 using Notification_Forwarder.Protocol;
-using System;
 using System.Diagnostics;
 using System.Threading;
 using Windows.UI.Xaml.Controls;
@@ -13,7 +12,7 @@ namespace Notification_Forwarder
         {
             Debug.WriteLine("Upload master worker is online.");
             Conf.Log("upload worker activated.");
-            while (Conf.CurrentConf.EnableForwarding && !RequestWorkerExit)
+            while (Conf.CurrentConf.EnableForwarding)
             {
                 if (UnsentNotificationPool.Count == 0) goto Skip;
                 Debug.WriteLine("Starting data upload...");
@@ -39,16 +38,14 @@ namespace Notification_Forwarder
             }
             Debug.WriteLine("Upload master worker is offline.");
             Conf.Log("upload worker exited.");
-            RequestWorkerExit = false;
         }
 
         public static void StartUploadWorker()
         {
             if (!Conf.CurrentConf.EnableForwarding) return;
-            if (UploadWorkerThread?.IsAlive == true) return;
+            if (IsUploadWorkerActive) return;
             Debug.WriteLine("Starting upload master worker...");
             Conf.Log("upload worker is starting...");
-            RequestWorkerExit = false;
             UploadWorkerThread = new Thread(UploadWorker) { IsBackground = true };
             UploadWorkerThread.Start();
         }
