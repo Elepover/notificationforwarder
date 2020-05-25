@@ -1,6 +1,5 @@
 ﻿using Notification_Forwarder.ConfigHelper;
 using Notification_Forwarder.Protocol;
-using System;
 using System.Diagnostics;
 using System.Threading;
 using Windows.UI.Xaml.Controls;
