@@ -21,9 +21,9 @@ namespace Notification_Forwarder.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (var endPoint in Conf.CurrentConf.APIEndPoints)
+            foreach (var endPoint in Conf.CurrentConf.ApiEndPoints2)
             {
-                ListView_EndPoints.Items.Add(endPoint);
+                ListView_EndPoints.Items.Add(endPoint.Address);
             }
         }
 
@@ -39,7 +39,15 @@ namespace Notification_Forwarder.Pages
             temp.AddRange(ListView_EndPoints.SelectedItems.Select(s => (string)s));
             foreach (var item in temp)
             {
-                Conf.CurrentConf.APIEndPoints.Remove(item);
+                // search for corresponding item
+                foreach (var ep in Conf.CurrentConf.ApiEndPoints2)
+                {
+                    if (ep.Address == item)
+                    {
+                        Conf.CurrentConf.ApiEndPoints2.Remove(ep);
+                        break;
+                    }
+                }
                 ListView_EndPoints.Items.Remove(item);
                 Conf.Log($"deleted endpoint {item}.");
             }
@@ -47,12 +55,12 @@ namespace Notification_Forwarder.Pages
 
         private async void Button_Add_Click(object sender, RoutedEventArgs e)
         {
-            var url = await AddAPIEndPointDialog.GetUrl();
-            if (string.IsNullOrEmpty(url)) return;
-            if (!Conf.IsUrl(url)) return;
-            Conf.Log($"a new endpoint {url} has been added.");
-            ListView_EndPoints.Items.Add(url);
-            Conf.CurrentConf.APIEndPoints.Add(url);
+            var ep = await AddAPIEndPointDialog.GetApiEndPointAsync();
+            if (string.IsNullOrEmpty(ep.Address)) return;
+            if (!Conf.IsUrl(ep.Address)) return;
+            Conf.Log($"a new endpoint {ep.Address} has been added.");
+            ListView_EndPoints.Items.Add(ep.Address);
+            Conf.CurrentConf.ApiEndPoints2.Add(ep);
         }
     }
 }

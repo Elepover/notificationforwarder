@@ -1,15 +1,21 @@
-﻿<ContentDialog
+﻿<ContentDialog xmlns:my="using:Notification_Forwarder.Controls" 
     x:Class="Notification_Forwarder.Controls.AddAPIEndPointDialog"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Uid="AddAPIEndPointDialog"
-        Title="Add forward target"
-        PrimaryButtonText="Add"
-        PrimaryButtonStyle="{StaticResource AccentButtonStyle}"
-        CloseButtonText="Cancel"
-        CloseButtonStyle="{StaticResource ButtonRevealStyle}"
-        DefaultButton="Primary" CloseButtonClick="ContentDialog_CloseButtonClick">
-    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <TextBox x:Uid="TextBox_EndPointURL" Header="The API endpoint URL should be:" PlaceholderText="Enter URL..." x:Name="TextBox_EndPointURL" TextChanged="TextBox_EndPointURL_TextChanged"/>
-    </StackPanel>
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Uid="AddAPIEndPointDialog"
+    Title="Add forward target"
+    PrimaryButtonText="Add"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    PrimaryButtonStyle="{StaticResource AccentButtonStyle}"
+    CloseButtonText="Cancel"
+    CloseButtonStyle="{StaticResource ButtonRevealStyle}"
+    DefaultButton="Primary" CloseButtonClick="ContentDialog_CloseButtonClick">
+    <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Enabled">
+        <StackPanel HorizontalAlignment="Stretch">
+            <TextBox x:Uid="TextBox_EndPointURL" Header="The API endpoint URL should be:" PlaceholderText="Enter URL..." x:Name="TextBox_EndPointURL" TextChanged="TextBox_EndPointURL_TextChanged"/>
+            <ToggleSwitch HorizontalAlignment="Stretch" x:Name="ToggleSwitch_UseHttpAuth" Margin="0,10,0,0" Header="Use HTTP basic authentication" x:Uid="ToggleSwitch_EnableHttpAuth" Toggled="ToggleSwitch_UseHttpAuth_Toggled"/>
+            <ToggleSwitch HorizontalAlignment="Stretch" x:Name="ToggleSwitch_UseProxy" Margin="0,10,0,0" Header="Use proxy" x:Uid="ToggleSwitch_EnableProxy" Toggled="ToggleSwitch_UseProxy_Toggled"/>
+            <my:SetProxyPanel Margin="0,10,0,0" x:Name="ProxyPanel" Visibility="Collapsed"/>
+        </StackPanel>
+    </ScrollViewer>
 </ContentDialog>

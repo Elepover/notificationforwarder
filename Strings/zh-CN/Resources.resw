@@ -132,11 +132,29 @@
   <data name="AppItem_Header.Text" xml:space="preserve">
     <value>此应用的通知转发</value>
   </data>
+  <data name="ComboBox_ProxyType.Header" xml:space="preserve">
+    <value>代理类型</value>
+  </data>
+  <data name="ComboBox_ProxyType_Http.Content" xml:space="preserve">
+    <value>HTTP</value>
+  </data>
+  <data name="ComboBox_ProxyType_Socks5.Content" xml:space="preserve">
+    <value>SOCKS5</value>
+  </data>
   <data name="ContentDialog_About.CloseButtonText" xml:space="preserve">
     <value>好</value>
   </data>
   <data name="ContentDialog_About.Title" xml:space="preserve">
     <value>关于</value>
+  </data>
+  <data name="DumpJsonDialog.CloseButtonText" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="DumpJsonDialog.PrimaryButtonText" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="DumpJsonDialog.Title" xml:space="preserve">
+    <value>设置内容导出</value>
   </data>
   <data name="EndPointsPage_ManageTargets.Text" xml:space="preserve">
     <value>管理转发目标</value>
@@ -165,6 +183,9 @@
   <data name="HomePage_NotificationsReceived.Text" xml:space="preserve">
     <value>已收到的通知数量</value>
   </data>
+  <data name="HyperlinkButton_DumpSettings.Content" xml:space="preserve">
+    <value>导出设置为 JSON</value>
+  </data>
   <data name="HyperlinkButton_ManageEndPoints.Content" xml:space="preserve">
     <value>管理转发目标</value>
   </data>
@@ -189,11 +210,20 @@
   <data name="NotificationsPage_NoNotificationsAvailable.Text" xml:space="preserve">
     <value>没有通知可供查看。</value>
   </data>
+  <data name="NumberBox_ProxyPort.Header" xml:space="preserve">
+    <value>端口</value>
+  </data>
   <data name="Off" xml:space="preserve">
     <value>关</value>
   </data>
   <data name="On" xml:space="preserve">
     <value>开</value>
+  </data>
+  <data name="Prompt_HttpAuth_Message" xml:space="preserve">
+    <value>输入 HTTP 身份验证凭据</value>
+  </data>
+  <data name="Prompt_HttpAuth_Title" xml:space="preserve">
+    <value>Notification Forwarder</value>
   </data>
   <data name="Prompt_NoPermission_OK" xml:space="preserve">
     <value>好</value>
@@ -203,6 +233,18 @@
   </data>
   <data name="Prompt_NoPermission_Title" xml:space="preserve">
     <value>没有权限</value>
+  </data>
+  <data name="Prompt_ProxyAuth_Message" xml:space="preserve">
+    <value>输入代理身份验证凭据</value>
+  </data>
+  <data name="SetProxyDialog.CloseButtonText" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="SetProxyDialog.PrimaryButtonText" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SetProxyDialog.Title" xml:space="preserve">
+    <value>设置代理</value>
   </data>
   <data name="SettingsPage_Apps.Text" xml:space="preserve">
     <value>要转发通知的应用</value>
@@ -225,6 +267,9 @@
   <data name="TextBox_EndPointURL.PlaceholderText" xml:space="preserve">
     <value>输入 URL...</value>
   </data>
+  <data name="TextBox_ProxyHost.Header" xml:space="preserve">
+    <value>主机名</value>
+  </data>
   <data name="ToggleSwitch.OffContent" xml:space="preserve">
     <value>禁用</value>
   </data>
@@ -237,7 +282,34 @@
   <data name="ToggleSwitch_EnableForwarder.Header" xml:space="preserve">
     <value>启用转发服务</value>
   </data>
+  <data name="ToggleSwitch_EnableHttpAuth.Header" xml:space="preserve">
+    <value>使用 HTTP 基本身份验证</value>
+  </data>
+  <data name="ToggleSwitch_EnableHttpAuth.OffContent" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="ToggleSwitch_EnableHttpAuth.OnContent" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="ToggleSwitch_EnableProxy.Header" xml:space="preserve">
+    <value>使用代理</value>
+  </data>
+  <data name="ToggleSwitch_EnableProxy.OffContent" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="ToggleSwitch_EnableProxy.OnContent" xml:space="preserve">
+    <value>是</value>
+  </data>
   <data name="ToggleSwitch_MuteNewApps.Header" xml:space="preserve">
     <value>将新应用静音</value>
+  </data>
+  <data name="ToggleSwitch_RequireAuth.Header" xml:space="preserve">
+    <value>需要身份验证</value>
+  </data>
+  <data name="ToggleSwitch_RequireAuth.OffContent" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="ToggleSwitch_RequireAuth.OnContent" xml:space="preserve">
+    <value>是</value>
   </data>
 </root>

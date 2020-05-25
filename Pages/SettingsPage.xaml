@@ -9,11 +9,20 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock x:Uid="SettingsPage_Header" Text="Settings" FontSize="25" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <ToggleSwitch x:Name="ToggleSwitch_DisplayPackageName" x:Uid="ToggleSwitch_DisplayPackageName" Header="Display app package name" Margin="10,49,10,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Toggled="ToggleSwitch_DisplayPackageName_Toggled"/>
-        <ToggleSwitch x:Name="ToggleSwitch_EnableForwarder" x:Uid="ToggleSwitch_EnableForwarder" Header="Enable forwarder" Margin="10,110,0,0" VerticalAlignment="Top" Toggled="ToggleSwitch_EnableForwarder_Toggled"/>
-        <ToggleSwitch x:Name="ToggleSwitch_MuteNewApps" x:Uid="ToggleSwitch_MuteNewApps" Header="Mute new apps" Margin="10,171,0,0" VerticalAlignment="Top" Toggled="ToggleSwitch_MuteNewApps_Toggled"/>
-        <HyperlinkButton x:Uid="HyperlinkButton_SeeApps" Content="Manage which apps to forward" Margin="10,232,0,0" VerticalAlignment="Top" Click="HyperlinkButton_Click"/>
-        <HyperlinkButton x:Uid="HyperlinkButton_ManageEndPoints" Content="Manage forward targets" Margin="10,269,0,0" VerticalAlignment="Top" Click="HyperlinkButton_Click_1"/>
+        <StackPanel Margin="10,10,10,10">
+            <TextBlock x:Uid="SettingsPage_Header" Text="Settings" FontSize="25" TextWrapping="Wrap"/>
+            <ToggleSwitch x:Name="ToggleSwitch_DisplayPackageName" Margin="0,5,0,0" x:Uid="ToggleSwitch_DisplayPackageName" Header="Display app package name" Toggled="ToggleSwitch_DisplayPackageName_Toggled"/>
+            <ToggleSwitch x:Name="ToggleSwitch_EnableForwarder" x:Uid="ToggleSwitch_EnableForwarder" Header="Enable forwarder" Toggled="ToggleSwitch_EnableForwarder_Toggled"/>
+            <ToggleSwitch x:Name="ToggleSwitch_MuteNewApps" x:Uid="ToggleSwitch_MuteNewApps" Header="Mute new apps" Toggled="ToggleSwitch_MuteNewApps_Toggled"/>
+            <HyperlinkButton x:Uid="HyperlinkButton_SeeApps" Click="HyperlinkButton_Click" Content="Manage which apps to forward"/>
+            <HyperlinkButton x:Uid="HyperlinkButton_ManageEndPoints" Click="HyperlinkButton_Click_1" Content="Manage forward targets"/>
+            <HyperlinkButton x:Uid="HyperlinkButton_DumpSettings" Click="HyperlinkButton_Click_2" Content="Dump settings as JSON"/>
+        </StackPanel>
+        
+        
+        
+        
+        
+        
     </Grid>
 </Page>

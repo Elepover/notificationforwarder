@@ -1,15 +1,12 @@
-﻿using Notification_Forwarder.ConfigHelper;
+﻿using Newtonsoft.Json;
+using Notification_Forwarder.ConfigHelper;
+using Notification_Forwarder.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
-// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
-
 namespace Notification_Forwarder.Pages
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
     public sealed partial class SettingsPage : Page
     {
         public SettingsPage()
@@ -29,11 +26,10 @@ namespace Notification_Forwarder.Pages
         {
             if (!_isToggleSwitchReady) return;
             Conf.CurrentConf.EnableForwarding = ToggleSwitch_EnableForwarder.IsOn;
-            if (ToggleSwitch_EnableForwarder.IsOn && (MainPage.UploadWorkerThread?.IsAlive != true))
+            if (ToggleSwitch_EnableForwarder.IsOn && !MainPage.IsUploadWorkerActive)
             {
                 MainPage.StartUploadWorker();
             }
-            else MainPage.RequestWorkerExit = true;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -60,6 +56,11 @@ namespace Notification_Forwarder.Pages
         {
             if (!_isToggleSwitchReady) return;
             Conf.CurrentConf.MuteNewApps = ToggleSwitch_MuteNewApps.IsOn;
+        }
+
+        private async void HyperlinkButton_Click_2(object sender, RoutedEventArgs e)
+        {
+            await DumpJsonDialog.Open(JsonConvert.SerializeObject(Conf.CurrentConf, Formatting.Indented));
         }
     }
 }

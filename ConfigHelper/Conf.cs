@@ -8,6 +8,7 @@ namespace Notification_Forwarder.ConfigHelper
         public static Conf CurrentConf;
         public static MainPage MainPageInstance;
         public static List<LogEntry> Logs = new List<LogEntry>();
+
         public bool EnableForwarding;
         public bool DisplayPackageName;
         public bool MuteNewApps;
@@ -16,6 +17,8 @@ namespace Notification_Forwarder.ConfigHelper
         public DateTime LastSuccessfulForward;
         public List<AppInfo> AppsToForward;
         public List<string> APIEndPoints;
+        public List<ApiEndPoint> ApiEndPoints2;
+
         public Conf() 
         {
             EnableForwarding = false;
@@ -26,6 +29,7 @@ namespace Notification_Forwarder.ConfigHelper
             LastSuccessfulForward = DateTime.MinValue;
             AppsToForward = new List<AppInfo>();
             APIEndPoints = new List<string>();
+            ApiEndPoints2 = new List<ApiEndPoint>();
         }
     }
 }

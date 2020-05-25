@@ -20,7 +20,19 @@ namespace Notification_Forwarder.ConfigHelper
                 Save(parsed);
             }
             if (apply) CurrentConf = parsed;
-            Log($"configurations loaded, {CurrentConf.AppsToForward.Count} app(s) on record, {CurrentConf.APIEndPoints.Count} target(s) set.");
+            if (CurrentConf.APIEndPoints.Count != 0)
+            {
+                Log("legacy API endpoints format detected, converting...");
+                int converted = 0;
+                foreach (var apiEp in CurrentConf.APIEndPoints)
+                {
+                    CurrentConf.ApiEndPoints2.Add(new ApiEndPoint(apiEp));
+                    converted++;
+                }
+                CurrentConf.APIEndPoints.Clear();
+                Log($"conversion complete, {converted} entry(entries) converted.");
+            }
+            Log($"configurations loaded, {CurrentConf.AppsToForward.Count} app(s) on record, {CurrentConf.ApiEndPoints2.Count} target(s) set.");
             return parsed;
         }
     }
