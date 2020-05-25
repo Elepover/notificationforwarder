@@ -10,7 +10,7 @@
     x:Uid="SetProxyPanel">
     <StackPanel>
         <TextBox x:FieldModifier="public" x:Name="TextBox_ProxyHost" x:Uid="TextBox_ProxyHost" Header="Host" PlaceholderText="example.com" TextChanged="TextBox_ProxyHost_TextChanged"/>
-        <controls:NumberBox Margin="0,10,0,0" x:Name="NumberBox_ProxyPort" x:Uid="NumberBox_ProxyHost" Header="Port" PlaceholderText="80" SpinButtonPlacementMode="Inline" SmallChange="1" LargeChange="100" Minimum="1" Maximum="65535" ValueChanged="NumberBox_ProxyPort_ValueChanged"/>
+        <controls:NumberBox Margin="0,10,0,0" x:Name="NumberBox_ProxyPort" x:Uid="NumberBox_ProxyPort" Header="Port" PlaceholderText="80" SpinButtonPlacementMode="Compact" SmallChange="1" LargeChange="100" Minimum="1" Maximum="65535" ValueChanged="NumberBox_ProxyPort_ValueChanged"/>
         <ComboBox x:Name="ComboBox_ProxyType" x:Uid="ComboBox_ProxyType" Margin="0,10,0,0" HorizontalAlignment="Stretch" Header="Proxy type" SelectedIndex="0" SelectionChanged="ComboBox_ProxyType_SelectionChanged">
             <ComboBoxItem x:Uid="ComboBox_ProxyType_Http" Content="HTTP"/>
             <ComboBoxItem x:Uid="ComboBox_ProxyType_Socks5" Content="SOCKS5"/>
