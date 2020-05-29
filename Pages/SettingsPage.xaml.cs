@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Notification_Forwarder.ConfigHelper;
 using Notification_Forwarder.Controls;
+using System;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -13,6 +15,8 @@ namespace Notification_Forwarder.Pages
         {
             this.InitializeComponent();
         }
+
+        private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
 
         private bool _isToggleSwitchReady = false;
 
@@ -60,6 +64,16 @@ namespace Notification_Forwarder.Pages
 
         private async void HyperlinkButton_Click_2(object sender, RoutedEventArgs e)
         {
+            var dialog = new ContentDialog()
+            {
+                Title = resourceLoader.GetString("Prompt_JsonExportWarning_Title"),
+                Content = resourceLoader.GetString("Prompt_JsonExportWarning_Content"),
+                DefaultButton = ContentDialogButton.Secondary,
+                PrimaryButtonText = resourceLoader.GetString("Prompt_JsonExportWarning_Yes"),
+                SecondaryButtonText = resourceLoader.GetString("Prompt_JsonExportWarning_No")
+            };
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Secondary) return;
             await DumpJsonDialog.Open(JsonConvert.SerializeObject(Conf.CurrentConf, Formatting.Indented));
         }
     }

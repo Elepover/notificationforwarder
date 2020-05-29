@@ -219,11 +219,39 @@
   <data name="On" xml:space="preserve">
     <value>On</value>
   </data>
+  <data name="Prompt_DeleteAPIEndPointConfirmation_Content" xml:space="preserve">
+    <value>Do you really want to delete the following %1 item(s)?
+
+This cannot be undone.</value>
+  </data>
+  <data name="Prompt_DeleteAPIEndPointConfirmation_No" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Prompt_DeleteAPIEndPointConfirmation_Title" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Prompt_DeleteAPIEndPointConfirmation_Yes" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Prompt_HttpAuth_Message" xml:space="preserve">
     <value>Enter HTTP authentication credentials</value>
   </data>
   <data name="Prompt_HttpAuth_Title" xml:space="preserve">
     <value>Notification Forwarder</value>
+  </data>
+  <data name="Prompt_JsonExportWarning_Content" xml:space="preserve">
+    <value>The dumped JSON may expose some sensitive information like your passwords, be sure to have a safe environment before exporting your configurations.
+
+Proceed to exporting?</value>
+  </data>
+  <data name="Prompt_JsonExportWarning_No" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Prompt_JsonExportWarning_Title" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Prompt_JsonExportWarning_Yes" xml:space="preserve">
+    <value>Continue</value>
   </data>
   <data name="Prompt_NoPermission_OK" xml:space="preserve">
     <value>Got it</value>

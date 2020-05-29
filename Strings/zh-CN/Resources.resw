@@ -219,11 +219,39 @@
   <data name="On" xml:space="preserve">
     <value>开</value>
   </data>
+  <data name="Prompt_DeleteAPIEndPointConfirmation_Content" xml:space="preserve">
+    <value>你确定后要删除这 %1 个项目吗？
+
+此操作无法撤消。</value>
+  </data>
+  <data name="Prompt_DeleteAPIEndPointConfirmation_No" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Prompt_DeleteAPIEndPointConfirmation_Title" xml:space="preserve">
+    <value>确定吗？</value>
+  </data>
+  <data name="Prompt_DeleteAPIEndPointConfirmation_Yes" xml:space="preserve">
+    <value>删除</value>
+  </data>
   <data name="Prompt_HttpAuth_Message" xml:space="preserve">
     <value>输入 HTTP 身份验证凭据</value>
   </data>
   <data name="Prompt_HttpAuth_Title" xml:space="preserve">
     <value>Notification Forwarder</value>
+  </data>
+  <data name="Prompt_JsonExportWarning_Content" xml:space="preserve">
+    <value>导出的 JSON 数据可能包含如密码之类的敏感信息，请确定在安全的环境下执行导出。
+
+继续吗？</value>
+  </data>
+  <data name="Prompt_JsonExportWarning_No" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Prompt_JsonExportWarning_Title" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="Prompt_JsonExportWarning_Yes" xml:space="preserve">
+    <value>继续</value>
   </data>
   <data name="Prompt_NoPermission_OK" xml:space="preserve">
     <value>好</value>

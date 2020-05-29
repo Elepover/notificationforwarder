@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Security.Credentials.UI;
 using Windows.UI;
-using Windows.UI.Text.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;

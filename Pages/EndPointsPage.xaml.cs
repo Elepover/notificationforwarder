@@ -1,23 +1,22 @@
 ﻿using Notification_Forwarder.ConfigHelper;
 using Notification_Forwarder.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
-
 namespace Notification_Forwarder.Pages
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
     public sealed partial class EndPointsPage : Page
     {
         public EndPointsPage()
         {
             this.InitializeComponent();
         }
+
+        private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -33,10 +32,21 @@ namespace Notification_Forwarder.Pages
             else ListView_EndPoints.SelectionMode = ListViewSelectionMode.Single;
         }
 
-        private void Button_Delete_Click(object sender, RoutedEventArgs e)
+        private async void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
             var temp = new List<string>();
             temp.AddRange(ListView_EndPoints.SelectedItems.Select(s => (string)s));
+            if (temp.Count == 0) return;
+            var dialog = new ContentDialog()
+            {
+                Title = resourceLoader.GetString("Prompt_DeleteAPIEndPointConfirmation_Title"),
+                Content = resourceLoader.GetString("Prompt_DeleteAPIEndPointConfirmation_Content").Replace("%1", temp.Count.ToString()),
+                DefaultButton = ContentDialogButton.Secondary,
+                PrimaryButtonText = resourceLoader.GetString("Prompt_DeleteAPIEndPointConfirmation_Yes"),
+                SecondaryButtonText = resourceLoader.GetString("Prompt_DeleteAPIEndPointConfirmation_No")
+            };
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Secondary) return;
             foreach (var item in temp)
             {
                 // search for corresponding item
