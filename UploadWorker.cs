@@ -11,7 +11,7 @@ namespace Notification_Forwarder
         private static void UploadWorker()
         {
             Debug.WriteLine("Upload master worker is online.");
-            Conf.Log("upload worker activated.");
+            Conf.Log("upload worker activated.", LogLevel.Complete);
             while (Conf.CurrentConf.EnableForwarding)
             {
                 if (UnsentNotificationPool.Count == 0) goto Skip;
@@ -32,7 +32,7 @@ namespace Notification_Forwarder
                     ClientData.Send(endPoint, pending, sessionId);
                     processedEndPoints++;
                 }
-                Conf.Log($"[{sessionId}] all uploads started, {processedEndPoints} endpoint(s) to go.");
+                Conf.Log($"[{sessionId}] all uploads started, {processedEndPoints} endpoint(s) to go.", LogLevel.Complete);
                 Skip:
                 Thread.Sleep(1000);
             }

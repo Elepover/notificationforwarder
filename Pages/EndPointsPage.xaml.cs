@@ -59,7 +59,7 @@ namespace Notification_Forwarder.Pages
                     }
                 }
                 ListView_EndPoints.Items.Remove(item);
-                Conf.Log($"deleted endpoint {item}.");
+                Conf.Log($"deleted endpoint {item}.", LogLevel.Complete);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Notification_Forwarder.Pages
             var ep = await AddAPIEndPointDialog.GetApiEndPointAsync();
             if (string.IsNullOrEmpty(ep.Address)) return;
             if (!Conf.IsUrl(ep.Address)) return;
-            Conf.Log($"a new endpoint {ep.Address} has been added.");
+            Conf.Log($"a new endpoint {ep.Address} has been added.", LogLevel.Complete);
             ListView_EndPoints.Items.Add(ep.Address);
             Conf.CurrentConf.ApiEndPoints2.Add(ep);
         }

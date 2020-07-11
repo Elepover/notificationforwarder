@@ -7,15 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
-
     <Grid>
         <NavigationView x:Uid="NavigationView"
                         x:Name="Navigation"
                         OpenPaneLength="200"
                         AlwaysShowHeader="False"
-                        PaneDisplayMode="Left"
                         IsSettingsVisible="True"
-                        SelectionChanged="Navigation_SelectionChanged" BackRequested="Navigation_BackRequested">
+                        SelectionChanged="Navigation_SelectionChanged"
+                        BackRequested="Navigation_BackRequested">
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Uid="HomePageItem" Tag="home" x:Name="HomePageItem">
                     <NavigationViewItem.Icon>

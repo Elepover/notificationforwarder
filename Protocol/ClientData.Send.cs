@@ -39,7 +39,7 @@ namespace Notification_Forwarder.Protocol
                             }
                             _ = await client.UploadDataTaskAsync(endPoint.Address, "POST", Encoding.UTF8.GetBytes(jsonMessage)).ConfigureAwait(false);
                         }
-                        Conf.Log($"[{session}@{retryCounter}/{_maxRetries}] successfully forwarded message to {endPoint}.");
+                        Conf.Log($"[{session}@{retryCounter}/{_maxRetries}] successfully forwarded message to {endPoint}.", LogLevel.Complete);
                         Conf.CurrentConf.LastSuccessfulForward = DateTime.Now;
                         Conf.CurrentConf.NotificationsForwarded++;
                     }

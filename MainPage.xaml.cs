@@ -110,18 +110,18 @@ namespace Notification_Forwarder
                 switch (accessStatus)
                 {
                     case UserNotificationListenerAccessStatus.Allowed:
-                        Conf.Log("permission granted, loading initial notifications...");
+                        Conf.Log("permission granted!", LogLevel.Complete);
                         IsListenerActive = true;
                         IsPermissionGranted = true;
                         var initialList = await Listener.GetNotificationsAsync(NotificationKinds.Toast);
-                        Conf.Log($"loading {initialList.Count} notifications...");
+                        Conf.Log($"loading {initialList.Count} notification(s)...");
                         foreach (var notif in initialList)
                         {
                             Conf.CurrentConf.AddApp(new AppInfo(notif.AppInfo) {ForwardingEnabled = !Conf.CurrentConf.MuteNewApps});
                         }
                         Notifications.AddRange(initialList);
                         Listener.NotificationChanged += NotificationHandler;
-                        Conf.Log("notification listener activated.");
+                        Conf.Log("notification listener activated.", LogLevel.Complete);
                         StartUploadWorker();
                         break;
                     default:

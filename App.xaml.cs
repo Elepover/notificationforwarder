@@ -47,7 +47,7 @@ namespace Notification_Forwarder
             // read settings
             Conf.Log("reading settings...");
             _ = Conf.Read();
-            Conf.Log("settings read successfully.");
+            Conf.Log("settings read successfully.", LogLevel.Complete);
 
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
@@ -88,7 +88,7 @@ namespace Notification_Forwarder
         ///<param name="e">有关导航失败的详细信息</param>
         private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            Conf.Log($"unable to load page: {e.SourcePageType.FullName}.");
+            Conf.Log($"unable to load page: {e.SourcePageType.FullName}.", LogLevel.Warning);
         }
 
         /// <summary>
