@@ -10,7 +10,7 @@
   <Identity
     Name="32615Elepover.NotificationForwarder"
     Publisher="CN=BE1ADC9A-643C-40F7-B474-D006EA7EFC44"
-    Version="1.3.27.0" />
+    Version="1.4.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="0318cd22-d177-4614-b6de-243a5d11f676" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
